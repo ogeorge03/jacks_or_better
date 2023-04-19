@@ -8,6 +8,7 @@
 /* when hovering a card highlight the border in red */
 .card:hover {
   border: 5px solid red;
+  border-radius: 10px;
 }
 
 /* card mulligan cards should be slightly transparent */

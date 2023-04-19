@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 
-function Mulligan({cards, handMulligan, setHand, deckID, setHandMulligan}) {
+function Mulligan({cards, handMulligan, setHand, deckID, setHandMulligan, numMulligan}) {
   // mulligan away the cards that are true in handMulligan
   // shuffle those cards back into the deck
   // draw new cards to replace the mulliganed cards
@@ -39,7 +39,7 @@ function Mulligan({cards, handMulligan, setHand, deckID, setHandMulligan}) {
           }
           setHandMulligan([false, false, false, false, false]);
           shuffleCards();
-        }}>Mulligan</button>
+        }}>{numMulligan === 0 ? "Keep Original Hand?" : `Mulligan ${numMulligan} Card${numMulligan === 1 ? "" : "s"}?`}</button>
       </div>
     </>
   )

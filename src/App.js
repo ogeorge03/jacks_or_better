@@ -11,6 +11,7 @@ function App() {
   const [deckID, setDeckID] = useState('');
   const [hand, setHand] = useState([]);
   const [handMulligan, setHandMulligan] = useState([false, false, false, false, false]);
+  const [numMulligan, setNumMulligan] = useState(0);
 
 
   // Initialize deck
@@ -26,6 +27,8 @@ function App() {
   // Draw 5 cards
   useEffect(() => {
     async function drawCards() {
+      if (deckID === "") return;
+
       const res = await axios.get(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=5`);
       setHand(res.data.cards);
     }
@@ -38,8 +41,9 @@ function App() {
     <>
       <h1>Jacks Or Better</h1>
       <div className="container">
-        <Hand cards={hand} setHandMulligan={setHandMulligan} />
-        <Mulligan cards={hand} handMulligan={handMulligan} setHand={setHand} deckID={deckID} setHandMulligan={setHandMulligan} />
+        <Hand cards={hand} setHandMulligan={setHandMulligan} setNumMulligan={setNumMulligan}/>
+        <Mulligan cards={hand} handMulligan={handMulligan} setHand={setHand} deckID={deckID}
+        setHandMulligan={setHandMulligan} numMulligan={numMulligan} setNumMulligan={setNumMulligan}/>
       </div>
     </>
   );

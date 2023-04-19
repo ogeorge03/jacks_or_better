@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 
-function Hand({cards, setHandMulligan}) {
+function Hand({cards, setHandMulligan, setNumMulligan}) {
 
   // if cards have changed set all classes to card
 
@@ -9,6 +9,7 @@ function Hand({cards, setHandMulligan}) {
     for (let i = 0; i < cards.length; i++) {
       document.getElementById(cards[i].code).className = 'card';
     }
+    setNumMulligan(0);
   }, [cards]);
 
 
@@ -16,7 +17,7 @@ function Hand({cards, setHandMulligan}) {
     <>
       <div className="container hand">
         {cards.map((card) => (
-          <img src={card.image} alt={card.code} id={card.code} className='card' onClick={
+          <img src={card.image} alt={card.code} id={card.code} key={card.code} className='card' onClick={
             () => {
               if (document.getElementById(card.code).className === 'card') {
                 document.getElementById(card.code).className = 'card mulligan';
@@ -25,6 +26,7 @@ function Hand({cards, setHandMulligan}) {
                   newHandMulligan[cards.indexOf(card)] = true;
                   return newHandMulligan;
                 });
+                setNumMulligan((prev) => prev + 1);
               } else {
                 document.getElementById(card.code).className = 'card';
                 setHandMulligan((prev) => {
@@ -32,6 +34,7 @@ function Hand({cards, setHandMulligan}) {
                   newHandMulligan[cards.indexOf(card)] = false;
                   return newHandMulligan;
                 });
+                setNumMulligan((prev) => prev - 1);
               }
             }} />
         ))}
