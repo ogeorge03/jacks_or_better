@@ -17,6 +17,7 @@ function App() {
   const [money, setMoney] = useState(100);
   const [bet, setBet] = useState(0);
   const [checkHand, setCheckHand] = useState(false);
+  const [newDeck, setNewDeck] = useState(false);
 
 
   // Initialize deck
@@ -39,6 +40,16 @@ function App() {
     }
     drawCards();
   }, [deckID]);
+
+  useEffect(() => {
+    async function newDeck(){
+      const res = await axios.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
+      setDeckID(res.data.deck_id);
+      setNewDeck(false);
+    }
+    newDeck();
+  }, [newDeck, setNewDeck, setDeckID]);
+
 
 
   // Return all the card images (png)
@@ -89,7 +100,7 @@ function App() {
                 setHandMulligan={setHandMulligan} numMulligan={numMulligan} setNumMulligan={setNumMulligan} setCheckHand={setCheckHand} />
             </div>
           ) : (
-            <Winnings cards={hand} bet={bet} setBet={setBet} setMoney={setMoney} setCheckHand={setCheckHand} />
+            <Winnings cards={hand} bet={bet} setBet={setBet} setMoney={setMoney} setCheckHand={setCheckHand} setNewDeck={setNewDeck} />
           )}
     </>
   )
