@@ -1,6 +1,7 @@
 import Hand from './Hand';
 import Mulligan from './Mulligan';
 import Payouts from './Payouts';
+import Winnings from './Winnings';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import './App.css';
@@ -15,6 +16,7 @@ function App() {
   const [numMulligan, setNumMulligan] = useState(0);
   const [money, setMoney] = useState(100);
   const [bet, setBet] = useState(0);
+  const [checkHand, setCheckHand] = useState(false);
 
 
   // Initialize deck
@@ -79,15 +81,21 @@ function App() {
           <div id="betError"></div>
         </div>
       ) : (
-        <div className="container">
-          <Hand cards={hand} setHandMulligan={setHandMulligan} setNumMulligan={setNumMulligan}/>
-          <Mulligan cards={hand} handMulligan={handMulligan} setHand={setHand} deckID={deckID}
-          setHandMulligan={setHandMulligan} numMulligan={numMulligan} setNumMulligan={setNumMulligan}/>
-        </div>
-      )}
+        <>
+          {checkHand === false ? (
+            <div className="container">
+              <Hand cards={hand} setHandMulligan={setHandMulligan} setNumMulligan={setNumMulligan} />
+              <Mulligan cards={hand} handMulligan={handMulligan} setHand={setHand} deckID={deckID}
+                setHandMulligan={setHandMulligan} numMulligan={numMulligan} setNumMulligan={setNumMulligan} setCheckHand={setCheckHand} />
+            </div>
+          ) : (
+            <Winnings cards={hand} bet={bet} setBet={setBet} setMoney={setMoney} setCheckHand={setCheckHand} />
+          )}
     </>
-  );
+  )
+}
+</>
+);
 }
 
 export default App;
-
