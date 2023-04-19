@@ -1,7 +1,44 @@
+import Hand from './Hand';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
 function App() {
+
+  // Deck api = https://deckofcardsapi.com/
+
+  const [deck, setDeck] = useState([]);
+  const [deckID, setDeckID] = useState('');
+  const [hand, setHand] = useState([]);
+
+
+  // Initialize deck
+  useEffect(() => {
+    async function getDeck() {
+      const res = await axios.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
+      setDeck(res.data);
+      setDeckID(res.data.deck_id);
+    }
+    getDeck();
+  }, []);
+
+
+  // Draw 5 cards
+  useEffect(() => {
+    async function drawCards() {
+      const res = await axios.get(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=5`);
+      setHand(res.data.cards);
+    }
+    drawCards();
+  }, [deckID]);
+
+
+  // Return all the card images (png)
   return (
     <>
-      <h1>Jacks or Better!</h1>
+      <h1>Jacks Or Better</h1>
+      <div className="container">
+        <Hand cards={hand} />
+      </div>
     </>
   );
 }
