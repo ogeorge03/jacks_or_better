@@ -42,3 +42,14 @@
   border: 1px solid black;
   text-align: left;
 }
+
+/* This element has an h1 with "Jacks Or Better"
+put it center and top with added styling */
+#game-title {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 2em;
+  font-weight: bold;
+}

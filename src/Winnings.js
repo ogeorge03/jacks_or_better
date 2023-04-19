@@ -152,8 +152,8 @@ function Winnings({cards, bet, setBet, money, setMoney, setCheckHand, setNewDeck
           ))}
         </div>
       </div>
-      <h1 >You bet ${bet} {winnings === 0 ? `and lost all of it.` : `and won a total of $${winnings + bet}! (Original bet + Payout)`}</h1>
       <h1>{winningsMessage}</h1>
+      <h1 >You bet ${bet} {winnings === 0 ? `and lost all of it.` : `and won a total of $${winnings + bet}! (Original bet + Payout)`}</h1>
       {money !== 0  &&
       <button onClick={
         () => {

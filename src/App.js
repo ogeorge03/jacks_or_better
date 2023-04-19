@@ -58,8 +58,8 @@ function App() {
     <>
     {quit === false ? (
       <>
-      <h1>Jacks Or Better</h1>
-      <h2>Money: ${money}</h2>
+      <h1 id="game-title">Jacks Or Better</h1>
+      <h2 id="money-title">Money: ${money}</h2>
       {bet !== 0 && <h2>Bet: ${bet}</h2>}
       <Payouts />
 
