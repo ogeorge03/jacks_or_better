@@ -10,7 +10,7 @@ function Hand({cards, setHandMulligan, setNumMulligan}) {
       document.getElementById(cards[i].code).className = 'card';
     }
     setNumMulligan(0);
-  }, [cards]);
+  }, [cards, setNumMulligan]);
 
 
   return (
