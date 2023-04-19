@@ -1,4 +1,5 @@
 import Hand from './Hand';
+import Mulligan from './Mulligan';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import './App.css';
@@ -38,6 +39,7 @@ function App() {
       <h1>Jacks Or Better</h1>
       <div className="container">
         <Hand cards={hand} setHandMulligan={setHandMulligan} />
+        <Mulligan cards={hand} handMulligan={handMulligan} setHand={setHand} deckID={deckID} setHandMulligan={setHandMulligan} />
       </div>
     </>
   );

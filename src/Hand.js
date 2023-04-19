@@ -1,7 +1,15 @@
 import React from 'react'
+import { useEffect } from 'react';
 
 function Hand({cards, setHandMulligan}) {
 
+  // if cards have changed set all classes to card
+
+  useEffect(() => {
+    for (let i = 0; i < cards.length; i++) {
+      document.getElementById(cards[i].code).className = 'card';
+    }
+  }, [cards]);
 
 
   return (
