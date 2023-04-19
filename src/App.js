@@ -1,5 +1,6 @@
 import Hand from './Hand';
 import Mulligan from './Mulligan';
+import Payouts from './Payouts';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import './App.css';
@@ -43,6 +44,7 @@ function App() {
     <>
       <h1>Jacks Or Better</h1>
       <h2>Money: ${money}</h2>
+      <Payouts />
 
       {/* if bet = 0 show bet container else show cards */}
       {bet === 0 ? (

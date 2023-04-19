@@ -15,3 +15,30 @@
 .card.mulligan {
   opacity: 0.5;
 }
+
+#modalClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  cursor: pointer;
+}
+
+#payoutsModal h1 {
+  text-align: center;
+}
+
+#payoutsModal table {
+  margin: 0 auto;
+}
+
+#payoutsModal table td {
+  padding: 5px;
+  border: 1px solid black;
+}
+
+#payoutsModal th {
+  padding: 5px;
+  border: 1px solid black;
+  text-align: left;
+}
