@@ -102,7 +102,7 @@ function checkWinnings(cards) {
 }
 
 
-function Winnings({cards, bet, setBet, setMoney, setCheckHand, setNewDeck}) {
+function Winnings({cards, bet, setBet, setMoney, setCheckHand, setNewDeck, setQuit}) {
 
   const [winnings, setWinnings] = useState(0);
   const [winningsMessage, setWinningsMessage] = useState('');
@@ -162,6 +162,8 @@ function Winnings({cards, bet, setBet, setMoney, setCheckHand, setNewDeck}) {
         }
       }
       >Play Again?</button>
+      <button onClick={() => setQuit(true)}
+      >Quit</button>
     </>
   )
 }

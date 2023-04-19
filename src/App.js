@@ -18,6 +18,7 @@ function App() {
   const [bet, setBet] = useState(0);
   const [checkHand, setCheckHand] = useState(false);
   const [newDeck, setNewDeck] = useState(false);
+  const [quit, setQuit] = useState(false);
 
 
   // Initialize deck
@@ -55,6 +56,8 @@ function App() {
   // Return all the card images (png)
   return (
     <>
+    {quit === false ? (
+      <>
       <h1>Jacks Or Better</h1>
       <h2>Money: ${money}</h2>
       <Payouts />
@@ -100,11 +103,20 @@ function App() {
                 setHandMulligan={setHandMulligan} numMulligan={numMulligan} setNumMulligan={setNumMulligan} setCheckHand={setCheckHand} />
             </div>
           ) : (
-            <Winnings cards={hand} bet={bet} setBet={setBet} setMoney={setMoney} setCheckHand={setCheckHand} setNewDeck={setNewDeck} />
+            <Winnings cards={hand} bet={bet} setBet={setBet} setMoney={setMoney} setCheckHand={setCheckHand}
+             setNewDeck={setNewDeck} setQuit={setQuit} />
           )}
     </>
   )
+}</>) : (
+  <div className="container">
+    <h1>Game Over</h1>
+    <h2>Money: ${money}</h2>
+    <button onClick={() => window.location.reload()}>Restart?</button>
+    </div>
+)
 }
+
 </>
 );
 }
