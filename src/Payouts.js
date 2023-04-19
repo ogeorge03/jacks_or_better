@@ -26,7 +26,7 @@ function Payouts() {
         }}>Payouts</button>
       </div>
       <Modal id="payoutsModal" isOpen={modalIsOpen} onRequestClose={() => {
-        document.getElementById('payoutsModal').style.display = 'none';
+        setModalIsOpen(false);
       }}>
         <div className="container">
           <button id="modalClose" onClick={() => {
