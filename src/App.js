@@ -1,21 +1,21 @@
 import Hand from './Hand';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
 
   // Deck api = https://deckofcardsapi.com/
 
-  const [deck, setDeck] = useState([]);
   const [deckID, setDeckID] = useState('');
   const [hand, setHand] = useState([]);
+  const [handMulligan, setHandMulligan] = useState([false, false, false, false, false]);
 
 
   // Initialize deck
   useEffect(() => {
     async function getDeck() {
       const res = await axios.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1');
-      setDeck(res.data);
       setDeckID(res.data.deck_id);
     }
     getDeck();
@@ -37,7 +37,7 @@ function App() {
     <>
       <h1>Jacks Or Better</h1>
       <div className="container">
-        <Hand cards={hand} />
+        <Hand cards={hand} setHandMulligan={setHandMulligan} />
       </div>
     </>
   );

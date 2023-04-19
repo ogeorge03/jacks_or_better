@@ -1,0 +1,16 @@
+/* display hand in a 1x5 grid with a slight room between cards */
+.hand {
+  display: grid;
+  grid-template-columns: repeat(5, .5fr);
+  grid-gap: 10px;
+}
+
+/* when hovering a card highlight the border in red */
+.card:hover {
+  border: 5px solid red;
+}
+
+/* card mulligan cards should be slightly transparent */
+.card.mulligan {
+  opacity: 0.5;
+}
