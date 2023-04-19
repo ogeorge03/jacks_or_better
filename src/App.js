@@ -60,6 +60,7 @@ function App() {
       <>
       <h1>Jacks Or Better</h1>
       <h2>Money: ${money}</h2>
+      {bet !== 0 && <h2>Bet: ${bet}</h2>}
       <Payouts />
 
       {/* if bet = 0 show bet container else show cards */}
@@ -103,7 +104,7 @@ function App() {
                 setHandMulligan={setHandMulligan} numMulligan={numMulligan} setNumMulligan={setNumMulligan} setCheckHand={setCheckHand} />
             </div>
           ) : (
-            <Winnings cards={hand} bet={bet} setBet={setBet} setMoney={setMoney} setCheckHand={setCheckHand}
+            <Winnings cards={hand} bet={bet} setBet={setBet} money={money} setMoney={setMoney} setCheckHand={setCheckHand}
              setNewDeck={setNewDeck} setQuit={setQuit} />
           )}
     </>

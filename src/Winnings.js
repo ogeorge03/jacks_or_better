@@ -102,7 +102,7 @@ function checkWinnings(cards) {
 }
 
 
-function Winnings({cards, bet, setBet, setMoney, setCheckHand, setNewDeck, setQuit}) {
+function Winnings({cards, bet, setBet, money, setMoney, setCheckHand, setNewDeck, setQuit}) {
 
   const [winnings, setWinnings] = useState(0);
   const [winningsMessage, setWinningsMessage] = useState('');
@@ -154,6 +154,7 @@ function Winnings({cards, bet, setBet, setMoney, setCheckHand, setNewDeck, setQu
       </div>
       <h1 >You bet ${bet} {winnings === 0 ? `and lost all of it.` : `and won a total of $${winnings + bet}! (Original bet + Payout)`}</h1>
       <h1>{winningsMessage}</h1>
+      {money !== 0  &&
       <button onClick={
         () => {
           setCheckHand(false);
@@ -162,6 +163,8 @@ function Winnings({cards, bet, setBet, setMoney, setCheckHand, setNewDeck, setQu
         }
       }
       >Play Again?</button>
+      }
+      {money === 0 && <h1>You're out of money! Probably time to take a break.</h1>}
       <button onClick={() => setQuit(true)}
       >Quit</button>
     </>
