@@ -2,6 +2,8 @@ import Hand from './Hand';
 import Mulligan from './Mulligan';
 import Payouts from './Payouts';
 import Winnings from './Winnings';
+import Login from './Login';
+import Register from './Register';
 import {Alert, Button, Form} from 'react-bootstrap';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -21,6 +23,9 @@ function App() {
   const [newDeck, setNewDeck] = useState(false);
   const [quit, setQuit] = useState(false);
 
+  const [accessToken, setAccessToken] = useState(localStorage.getItem('auth-token-access'));
+  const [refreshToken, setRefreshToken] = useState(localStorage.getItem('auth-token-refresh'));
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // Initialize deck
   useEffect(() => {
@@ -56,6 +61,13 @@ function App() {
 
   // Return all the card images (png)
   return (
+    <>
+    {accessToken === null ? (
+      <>
+        <Login setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} setIsAdmin={setIsAdmin} />
+        <Register setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} />
+
+      </>) : (
     <>
       <Alert id="game-title">Jacks Or Better</Alert>
       <Payouts />
@@ -120,6 +132,8 @@ function App() {
 )
 }
 
+</>
+      )}
 </>
 );
 }

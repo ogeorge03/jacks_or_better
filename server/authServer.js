@@ -5,7 +5,7 @@ const dotenv = require("dotenv")
 dotenv.config();
 const userModel = require("./userModel.js")
 const { connectDB } = require("./connectDB.js")
-
+const cors = require("cors")
 
 const {
   UserBadRequest,
@@ -14,6 +14,8 @@ const {
 } = require("./errors.js")
 
 const app = express()
+
+app.use(cors())
 
 const start = asyncWrapper(async () => {
   await connectDB({ "drop": false });
