@@ -33,6 +33,16 @@ const schema = new mongoose.Schema({
     default: "user",
     enum: ["user", "admin"]
   },
+  token: {
+    type: String,
+    required: false,
+    default: null
+  },
+  token_invalid: {
+    type: Boolean,
+    required: true,
+    default: false
+  }
 })
 
 module.exports = mongoose.model('users', schema) //users is the name of the collection in the db

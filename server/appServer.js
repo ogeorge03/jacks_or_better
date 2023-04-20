@@ -47,8 +47,11 @@ const jwt = require("jsonwebtoken")
 // const { findOne } = require("./userModel.js")
 
 const authUser = asyncWrapper(async (req, res, next) => {
-  // const to ken = req.header('auth-token')
-  const token = req.query.appid
+  // get users token from header
+  const token = req.header("auth-token-access")
+  //
+
+  // const token = req.query.appid
   if (!token) {
     throw new UserAuthError("No Token: Please provide an appid query parameter.")
   }
@@ -85,8 +88,36 @@ app.use(cors(
   }
 ))
 
+// TODO - add authUser to all routes below this line
+// app.use(authUser) // Boom! All routes below this line are protected
 
-app.use(authUser) // Boom! All routes below this line are protected
+app.post("/updateMoney", asyncWrapper(async (req, res) => {
+  // update this user's money
+  const {username, money} = req.body
+
+  const user = await userModel.findOne({username})
+  if (!user) {
+    throw new UserNotFoundError("User not found")
+  }
+  await userModel.updateOne({username}, {money})
+  res.json({
+    msg: "Money updated"
+  })
+}))
+
+app.post("/getMoney", asyncWrapper(async (req, res) => {
+  // get this user's money
+  const {username} = req.body
+  const user = await userModel.findOne({username})
+  if (!user) {
+    throw new UserNotFoundError("User not found")
+  }
+  res.json({
+    money: user.money
+  })
+}))
+
+
 
 app.get("*", (req, res) => {
   // res.json({

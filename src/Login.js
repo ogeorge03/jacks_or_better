@@ -1,15 +1,20 @@
 import React from 'react'
 import axios from 'axios'
 
-function Login({setAccessToken, setRefreshToken, setIsAdmin}) {
+function Login({setAccessToken, setRefreshToken, setIsAdmin, setUser}) {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
   
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:5000/login', { username, password })
-      setAccessToken(res.headers['auth-token-access'])
+      const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/login`, {
+        username: username,
+        password: password
+      })
+      setUser(username)
+      // setAccessToken(res.headers['auth-token-access'])
+      setAccessToken(res.headers['auth-token'])
       setRefreshToken(res.headers['auth-token-refresh'])
       setIsAdmin(res.data.role === "admin")
       document.getElementById("errorLogin").innerHTML = ""

@@ -22,10 +22,37 @@ function App() {
   const [checkHand, setCheckHand] = useState(false);
   const [newDeck, setNewDeck] = useState(false);
   const [quit, setQuit] = useState(false);
+  const [username, setUsername] = useState('');
 
   const [accessToken, setAccessToken] = useState(localStorage.getItem('auth-token-access'));
   const [refreshToken, setRefreshToken] = useState(localStorage.getItem('auth-token-refresh'));
   const [isAdmin, setIsAdmin] = useState(false);
+
+  // Set money to users money in the database on first load
+  useEffect(() => {
+    async function getMoney() {
+      if (accessToken === null) return;
+      try {
+        const res = await axios.post(`${process.env.REACT_APP_APP_SERVER}/getMoney`, {
+          username: username
+        }, {
+          headers: {
+            'auth-token-access': accessToken,
+            'auth-token-refresh': refreshToken
+          }
+        });
+        setMoney(res.data.money);
+        setAccessToken(res.headers['auth-token-access']);
+        setRefreshToken(res.headers['auth-token-refresh']);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getMoney();
+  }, [accessToken, refreshToken, username]);
+
+
+
 
   // Initialize deck
   useEffect(() => {
@@ -57,6 +84,30 @@ function App() {
     newDeck();
   }, [newDeck, setNewDeck, setDeckID]);
 
+  // Whenever money changes, update the database
+  useEffect(() => {
+    async function updateMoney() {
+      if (accessToken === null) return;
+      try {
+        const res = await axios.post(`${process.env.REACT_APP_APP_SERVER}/updateMoney`, {
+          money: money,
+          username: username
+        }, {
+          headers: {
+            'auth-token-access': accessToken,
+            'auth-token-refresh': refreshToken
+          }
+        });
+        setAccessToken(res.headers['auth-token-access']);
+        setRefreshToken(res.headers['auth-token-refresh']);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    updateMoney();
+  }, [money, accessToken, refreshToken, setAccessToken, setRefreshToken, username]);
+
+
 
 
   // Return all the card images (png)
@@ -64,7 +115,7 @@ function App() {
     <>
     {accessToken === null ? (
       <>
-        <Login setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} setIsAdmin={setIsAdmin} />
+        <Login setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} setIsAdmin={setIsAdmin} setUser={setUsername} />
         <Register setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} />
 
       </>) : (
