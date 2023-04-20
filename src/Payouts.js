@@ -33,7 +33,8 @@ function Payouts() {
           <Button variant='danger' id="modalClose" onClick={() => {
             setModalIsOpen(false);
           }}>X</Button>
-          <h1>Payouts</h1>
+          <h1 id="payouts-h1">Payouts</h1>
+
           <Table striped bordered hover variant="light" responsive="sm">
             <thead>
               <tr>

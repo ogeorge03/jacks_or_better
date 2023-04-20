@@ -23,7 +23,6 @@ function checkWinnings(cards) {
   }
 
   let sortedValues = cardValues.slice().sort((a, b) => a - b);
-  console.log("sortedValues: ", sortedValues)
 
 
 

@@ -29,6 +29,39 @@ body {
       2x2 and 1x1
 */
 
+@media screen and (max-width: 768px) {
+  .hand {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .hand img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .hand {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .hand img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .hand {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .hand img {
+    width: 100%;
+  }
+}
+
+
 
 
 
@@ -190,4 +223,10 @@ put it center and top with added styling */
   top: 50%;
   left: 50%;
   transform: translate(-50%, 500%);
+}
+
+#payouts-h1 {
+  /* center text in the ttable */
+  text-align: center;
+  color:black;
 }
