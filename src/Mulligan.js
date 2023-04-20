@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import {Button} from 'react-bootstrap';
 
 function Mulligan({cards, handMulligan, setHand, deckID, setHandMulligan, numMulligan, setCheckHand}) {
   // mulligan away the cards that are true in handMulligan
@@ -12,7 +13,7 @@ function Mulligan({cards, handMulligan, setHand, deckID, setHandMulligan, numMul
   return (
     <>
       <div className="container mulliganBtn">
-        <button onClick={async () => {
+        <Button id="mulligan-btn" onClick={async () => {
           const mulliganedCards = [];
           for (let i = 0; i < handMulligan.length; i++) {
             if (handMulligan[i]) {
@@ -40,7 +41,7 @@ function Mulligan({cards, handMulligan, setHand, deckID, setHandMulligan, numMul
           await shuffleCards();
           setHandMulligan([false, false, false, false, false]);
           setCheckHand(true);
-        }}>{numMulligan === 0 ? "Keep Original Hand?" : `Mulligan ${numMulligan} Card${numMulligan === 1 ? "" : "s"}?`}</button>
+        }}>{numMulligan === 0 ? "Keep Original Hand?" : `Mulligan ${numMulligan} Card${numMulligan === 1 ? "" : "s"}?`}</Button>
       </div>
     </>
   )

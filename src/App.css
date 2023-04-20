@@ -1,9 +1,36 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* add background img */
+body {
+  background-image: url('https://new-bo.platipusgaming.com/sites/default/files/styles/games_bg/public/media/games/bg/2022-10/BG_3200x1800_Jacks%20or%20Better.jpg?itok=AXPQVTBw');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* change text color since background is a poker table */
+  color: white;
+}
+
 /* display hand in a 1x5 grid with a slight room between cards */
 .hand {
   display: grid;
   grid-template-columns: repeat(5, .5fr);
   grid-gap: 10px;
+  justify-items: center;
+  align-items: center;
 }
+
+.hand img {
+  width: 75%;
+}
+
+/* at smaller screen sizes display hand differently
+  ie: 1x5
+      3x1 and 2x1
+      2x2 and 1x1
+*/
+
+
+
 
 /* when hovering a card highlight the border in red */
 .card:hover {
@@ -46,10 +73,121 @@
 /* This element has an h1 with "Jacks Or Better"
 put it center and top with added styling */
 #game-title {
-  position: absolute;
   top: 0;
   left: 50%;
   transform: translate(-50%, 0);
   font-size: 2em;
   font-weight: bold;
+  text-align: center;
+}
+
+#money-title {
+  position: absolute;
+  right: 0;
+  margin: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+#bet-title {
+  position: absolute;
+  left: 0;
+  margin: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* put payoutsBtn in the top left corner */
+.payoutsBtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* put betContainer in the middle of the screen */
+.betContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.betContainer Form.Control {
+  margin: 10px;
+}
+
+.betContainer Button {
+  margin: 10px;
+}
+
+#play-quit-ctn {
+  position: absolute;
+  left: 0;
+  transform: translate(0, 100%);
+  width: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+#play-quit-ctn Button {
+  width: fit-content;
+  /* move container up */
+  transform: translate(0, -200%);
+}
+
+#play-again-btn {
+  margin: 10px;
+  grid-row: 1;
+
+}
+
+#quit-btn {
+  margin: 10px;
+  grid-row: 2;
+}
+
+#loser {
+  transform: translate(0, -150%);
+}
+
+.game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* container with the hand of cards and a button below */
+.hand-mulligan {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* put the hand of cards in the middle of the screen */
+.hand-mulligan .hand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+
+}
+
+/* put the mulligan button in the middle of the screen */
+.hand-mulligan #mulligan-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 500%);
 }

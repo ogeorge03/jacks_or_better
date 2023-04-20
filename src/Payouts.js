@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from 'react-modal';
+import {Table, Button} from 'react-bootstrap';
 import { useState } from 'react';
 
 // Button that brings up a modal showing the payouts for each hand
@@ -21,19 +22,19 @@ function Payouts() {
   return (
     <>
       <div className="container payoutsBtn">
-        <button onClick={() => {
+        <Button onClick={() => {
           setModalIsOpen(true);
-        }}>Payouts</button>
+        }}>Payouts</Button>
       </div>
       <Modal id="payoutsModal" isOpen={modalIsOpen} onRequestClose={() => {
         setModalIsOpen(false);
       }}>
         <div className="container">
-          <button id="modalClose" onClick={() => {
+          <Button variant='danger' id="modalClose" onClick={() => {
             setModalIsOpen(false);
-          }}>X</button>
+          }}>X</Button>
           <h1>Payouts</h1>
-          <table>
+          <Table striped bordered hover variant="light" responsive="sm">
             <thead>
               <tr>
                 <th>Hand</th>
@@ -78,7 +79,7 @@ function Payouts() {
                 <td>1</td>
               </tr>
             </tbody>
-          </table>
+          </Table>
           </div>
       </Modal>
     </>

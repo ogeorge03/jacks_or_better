@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
+import { Alert, Button } from 'react-bootstrap';
 
 function checkWinnings(cards) {
   let cardValues = [];
@@ -152,21 +153,24 @@ function Winnings({cards, bet, setBet, money, setMoney, setCheckHand, setNewDeck
           ))}
         </div>
       </div>
-      <h1>{winningsMessage}</h1>
-      <h1 >You bet ${bet} {winnings === 0 ? `and lost all of it.` : `and won a total of $${winnings + bet}! (Original bet + Payout)`}</h1>
+      <br /> <br />
+      <Alert variant={winningsMessage !== "No Winning Hand. Better luck next time!" ? "success" : "warning"}>{winningsMessage}</Alert>
+      <Alert variant={winnings === 0 ? "warning" : "success"}>You bet ${bet} {winnings === 0 ? `and lost all of it.` : `and won a total of $${winnings + bet}! (Original bet + Payout)`}</Alert>
+      <div id="play-quit-ctn">
       {money !== 0  &&
-      <button onClick={
+      <Button id="play-again-btn" onClick={
         () => {
           setCheckHand(false);
           setBet(0);
           setNewDeck(true)
         }
       }
-      >Play Again?</button>
+      >Play Again?</Button>
       }
-      {money === 0 && <h1>You're out of money! Probably time to take a break.</h1>}
-      <button onClick={() => setQuit(true)}
-      >Quit</button>
+      {money === 0 && <Alert id="loser" variant="danger">You're out of money! Probably time to take a break.</Alert>}
+      <Button id="quit-btn" onClick={() => setQuit(true)}
+      >Quit</Button>
+      </div>
     </>
   )
 }
