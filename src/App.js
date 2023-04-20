@@ -70,7 +70,7 @@ function App() {
           <div className="betContainer">
             <h2>Place a bet</h2>
             {/* number field */}
-            <Form.Control type="number" min="1" max={money} step="1"></Form.Control>
+            <Form.Control type="number" min="1" max={money} step="1" pattern="\d*"></Form.Control>
             {/* bet button */}
             <Button variant="primary" size="lg" onClick={() => {
 
