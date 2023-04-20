@@ -31,13 +31,14 @@ var userModel = []
 const start = asyncWrapper(async () => {
   await connectDB({ "drop": false });
 
-  userModel = mongoose.model("users", require("./userModel.js"))
+  userModel = require("./userModel.js")
+
 
   app.listen(process.env.appServerPORT, (err) => {
     if (err)
       throw new UserDbError(err)
     else
-      console.log(`Phew! Server is running on port: ${process.env.appServerPORT}`);
+      console.log(`Phew! appServer is running on port: ${process.env.appServerPORT}`);
   })
 })
 start()
