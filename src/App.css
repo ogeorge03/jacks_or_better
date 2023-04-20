@@ -8,6 +8,7 @@ body {
   background-attachment: fixed;
   /* change text color since background is a poker table */
   color: white;
+  overflow-x: hidden;
 }
 
 /* display hand in a 1x5 grid with a slight room between cards */
