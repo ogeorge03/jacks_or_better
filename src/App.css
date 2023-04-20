@@ -1,5 +1,10 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+html {
+  overflow-x: hidden;
+}
+
 /* add background img */
 body {
   background-image: url('https://new-bo.platipusgaming.com/sites/default/files/styles/games_bg/public/media/games/bg/2022-10/BG_3200x1800_Jacks%20or%20Better.jpg?itok=AXPQVTBw');
@@ -9,7 +14,9 @@ body {
   /* change text color since background is a poker table */
   color: white;
   overflow-x: hidden;
+  width: 100%;
 }
+
 
 /* display hand in a 1x5 grid with a slight room between cards */
 .hand {
