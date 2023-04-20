@@ -14,7 +14,7 @@ function Payouts() {
 
   Modal.setAppElement('#root')
   Modal.defaultStyles.overlay.backgroundColor = 'rgba(0, 0, 0, 0.5)'
-  Modal.defaultStyles.content.width = '400px'
+  Modal.defaultStyles.content.width = '66%'
   Modal.defaultStyles.content.height = '500px'
   Modal.defaultStyles.content.margin = 'auto'
   Modal.defaultStyles.content.padding = '0'
@@ -22,7 +22,7 @@ function Payouts() {
   return (
     <>
       <div className="container payoutsBtn">
-        <Button onClick={() => {
+        <Button id='payout-btn' onClick={() => {
           setModalIsOpen(true);
         }}>Payouts</Button>
       </div>
@@ -35,6 +35,7 @@ function Payouts() {
           }}>X</Button>
           <h1 id="payouts-h1">Payouts</h1>
 
+          <br />
           <Table striped bordered hover variant="light" responsive="sm">
             <thead>
               <tr>

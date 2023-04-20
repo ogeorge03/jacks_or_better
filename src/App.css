@@ -139,6 +139,16 @@ put it center and top with added styling */
   cursor: pointer;
 }
 
+@media screen and (max-width: 480px) {
+  /* make payoutsBtn smaller so it doesnt overlap */
+  .payoutsBtn #payout-btn {
+    font-size: .7em;
+  }
+
+
+
+}
+
 /* put betContainer in the middle of the screen */
 .betContainer {
   position: absolute;
