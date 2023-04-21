@@ -27,6 +27,7 @@ function App() {
   const [username, setUsername] = useState('');
   const [restarts, setRestarts] = useState(0);
   const [newAccount, setNewAccount] = useState(false);
+  const [highScore, setHighScore] = useState(0);
 
   const [accessToken, setAccessToken] = useState(localStorage.getItem('auth-token-access'));
   const [refreshToken, setRefreshToken] = useState(localStorage.getItem('auth-token-refresh'));
@@ -46,6 +47,7 @@ function App() {
           }
         });
         setMoney(res.data.money);
+        setHighScore(res.data.high_score);
         setAccessToken(res.headers['auth-token-access']);
         setRefreshToken(res.headers['auth-token-refresh']);
       } catch (error) {
@@ -211,7 +213,7 @@ const handleLogout = async () => {
     <Button variant="primary" id="logout-btn" onClick={handleLogout}>Logout</Button>
     {(restart === false) && (money + bet !== 0) ? (
       <>
-      <h2 id="money-title">Money: ${money}</h2>
+      <h2 id="money-title">Money: ${money} <br/> High Score: ${highScore}</h2>
       {bet === 0 && <h2 id="restarts-title">Restarts: {restarts}</h2>}
       {bet !== 0 && <h2 id="bet-title">Bet: ${bet}</h2>}
       <br /> <br />

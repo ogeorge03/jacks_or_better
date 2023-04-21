@@ -104,6 +104,12 @@ app.post("/updateMoney", asyncWrapper(async (req, res) => {
   if (!user) {
     throw new UserNotFoundError("User not found")
   }
+
+  // if current money is greater than high score then update high score
+  if (money > user.high_score) {
+     await userModel.updateOne({username}, {high_score: money})
+  }
+
   await userModel.updateOne({username}, {money})
   res.json({
     msg: "Money updated"
@@ -118,7 +124,8 @@ app.post("/getMoney", asyncWrapper(async (req, res) => {
     throw new UserNotFoundError("User not found")
   }
   res.json({
-    money: user.money
+    money: user.money,
+    high_score: user.high_score
   })
 }))
 
