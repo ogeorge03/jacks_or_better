@@ -11,7 +11,7 @@ function Register({setAccessToken, setRefreshToken, setNewAccount, setUser}) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/register`, {
+      const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER | "http://localhost:5000"}/register`, {
         username: username,
         password: password
       })

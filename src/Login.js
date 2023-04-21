@@ -9,7 +9,7 @@ function Login({setAccessToken, setRefreshToken, setIsAdmin, setUser, setNewAcco
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/login`, {
+      const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER | "http://localhost:5000"}/login`, {
         username: username,
         password: password
       })

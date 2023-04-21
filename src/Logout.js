@@ -6,7 +6,7 @@ function Logout() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.get(`${process.env.REACT_APP_AUTH_SERVER}/logout`, {
+      const res = await axios.get(`${process.env.REACT_APP_AUTH_SERVER | "http://localhost:5000"}/logout`, {
         headers: {
           'auth-token-access': localStorage.getItem('auth-token-access'),
           'auth-token-refresh': localStorage.getItem('auth-token-refresh')
