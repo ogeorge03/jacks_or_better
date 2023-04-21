@@ -142,6 +142,14 @@ put it center and top with added styling */
   font-weight: bold;
 }
 
+#restarts-title {
+  position: absolute;
+  left: 0;
+  margin: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 /* put payoutsBtn in the top left corner */
 .payoutsBtn {
   position: absolute;

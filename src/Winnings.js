@@ -102,7 +102,7 @@ function checkWinnings(cards) {
 }
 
 
-function Winnings({cards, bet, setBet, money, setMoney, setCheckHand, setNewDeck, setQuit}) {
+function Winnings({cards, bet, setBet, money, setMoney, setCheckHand, setNewDeck, setRestart}) {
 
   const [winnings, setWinnings] = useState(0);
   const [winningsMessage, setWinningsMessage] = useState('');
@@ -166,9 +166,13 @@ function Winnings({cards, bet, setBet, money, setMoney, setCheckHand, setNewDeck
       }
       >Play Again?</Button>
       }
-      {money === 0 && <Alert id="loser" variant="danger">You're out of money! Probably time to take a break.</Alert>}
-      <Button id="quit-btn" onClick={() => setQuit(true)}
+      {money === 0 && <><Alert id="loser" variant="danger">You're out of money! Probably time to take a break.</Alert>
+        <Button id="restart-btn" onClick={() => setRestart(true)}>Restart</Button></>
+      }
+      {money !== 0 &&
+      <Button id="quit-btn" onClick={() => window.location.reload()}
       >Quit</Button>
+      }
       </div>
     </>
   )

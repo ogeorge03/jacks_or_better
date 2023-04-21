@@ -117,6 +117,37 @@ app.post("/getMoney", asyncWrapper(async (req, res) => {
   })
 }))
 
+app.post("/restart", asyncWrapper(async (req, res) => {
+  // set users money back to 100
+  // increment users restarts by 1
+  const {username} = req.body
+  const user = await userModel.findOne({username})
+  if (!user) {
+    throw new UserNotFoundError("User not found")
+  }
+
+  await userModel.updateOne({username}, {money: 100, restarts: user.restarts + 1})
+  res.json({
+    msg: "Money reset"
+  })
+}))
+
+app.post("/getRestarts", asyncWrapper(async (req, res) => {
+  // get this user's restarts
+  const {username} = req.body
+  const user = await userModel.findOne({username})
+  if (!user) {
+    throw new UserNotFoundError("User not found")
+  }
+
+  res.json({
+    restarts: user.restarts
+  })
+}))
+
+
+
+
 
 
 app.get("*", (req, res) => {

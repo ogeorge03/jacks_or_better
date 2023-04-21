@@ -39,6 +39,14 @@ app.use(express.json())
 const bcrypt = require("bcrypt")
 app.post('/register', asyncWrapper(async (req, res) => {
   const { username, password, email } = req.body
+
+
+  // check if user already exists
+  const alreadyExists = await userModel.findOne({ username })
+  if (alreadyExists) {
+    throw new UserBadRequest("User already exists")
+  }
+
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
   const userWithHashedPassword = { ...req.body, password: hashedPassword }

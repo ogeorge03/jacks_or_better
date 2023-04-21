@@ -42,7 +42,12 @@ const schema = new mongoose.Schema({
     type: Boolean,
     required: true,
     default: false
-  }
+  },
+  restarts: {
+    type: Number,
+    required: true,
+    default: 0
+  },
 })
 
 module.exports = mongoose.model('users', schema) //users is the name of the collection in the db

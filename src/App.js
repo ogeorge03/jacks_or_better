@@ -9,6 +9,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import './App.css';
 
+
+
 function App() {
 
   // Deck api = https://deckofcardsapi.com/
@@ -21,8 +23,9 @@ function App() {
   const [bet, setBet] = useState(0);
   const [checkHand, setCheckHand] = useState(false);
   const [newDeck, setNewDeck] = useState(false);
-  const [quit, setQuit] = useState(false);
+  const [restart, setRestart] = useState(false);
   const [username, setUsername] = useState('');
+  const [restarts, setRestarts] = useState(0);
 
   const [accessToken, setAccessToken] = useState(localStorage.getItem('auth-token-access'));
   const [refreshToken, setRefreshToken] = useState(localStorage.getItem('auth-token-refresh'));
@@ -51,6 +54,27 @@ function App() {
     getMoney();
   }, [accessToken, refreshToken, username]);
 
+  useEffect(() => {
+    async function getRestarts() {
+      if (accessToken === null) return;
+      try {
+        const res = await axios.post(`${process.env.REACT_APP_APP_SERVER}/getRestarts`, {
+          username: username
+        }, {
+          headers: {
+            'auth-token-access': accessToken,
+            'auth-token-refresh': refreshToken
+          }
+        });
+        setRestarts(res.data.restarts);
+        setAccessToken(res.headers['auth-token-access']);
+        setRefreshToken(res.headers['auth-token-refresh']);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getRestarts();
+  }, [accessToken, refreshToken, username]);
 
 
 
@@ -109,6 +133,29 @@ function App() {
 
 
 
+const handleRestart = async () => {
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_APP_SERVER}/restart`, {
+      username: username
+    }, {
+      headers: {
+        'auth-token-access': accessToken,
+        'auth-token-refresh': refreshToken
+      }
+    });
+    setMoney(100);
+    setAccessToken(res.headers['auth-token-access']);
+    setRefreshToken(res.headers['auth-token-refresh']);
+    setRestart(false);
+    setRestarts(restarts + 1);
+    setNewDeck(true);
+    setBet(0);
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+
 
   // Return all the card images (png)
   return (
@@ -122,9 +169,10 @@ function App() {
     <>
       <Alert id="game-title">Jacks Or Better</Alert>
       <Payouts />
-    {quit === false ? (
+    {restart === false ? (
       <>
       <h2 id="money-title">Money: ${money}</h2>
+      {bet === 0 && <h2 id="restarts-title">Restarts: {restarts}</h2>}
       {bet !== 0 && <h2 id="bet-title">Bet: ${bet}</h2>}
       <br /> <br />
       {/* if bet = 0 show bet container else show cards */}
@@ -170,15 +218,14 @@ function App() {
             </div>
           ) : (
             <Winnings cards={hand} bet={bet} setBet={setBet} money={money} setMoney={setMoney} setCheckHand={setCheckHand}
-             setNewDeck={setNewDeck} setQuit={setQuit} />
+             setNewDeck={setNewDeck} setRestart={setRestart} />
           )}
     </>
   )
 }</>) : (
   <div className="container game-over">
     <h1>Game Over</h1>
-    <h2>Money: ${money}</h2>
-    <Button onClick={() => window.location.reload()}>Restart?</Button>
+    <Button onClick={() => handleRestart()}>Restart?</Button>
     </div>
 )
 }

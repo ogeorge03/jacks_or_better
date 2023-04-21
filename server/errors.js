@@ -65,7 +65,7 @@ class UserAuthError extends UserBadRequest {
   constructor(message) {
     super(message);
     this.name = 'UserAuthError';
-    this.message = `User API Error - Authentication Error: ${message}`;
+    this.message = `${message}`;
     this.errCode = 401;
   }
 }
