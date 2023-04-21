@@ -21,6 +21,10 @@ body {
   width: 100%;
 }
 
+a {
+  color: white;
+}
+
 
 /* display hand in a 1x5 grid with a slight room between cards */
 .hand {
@@ -259,4 +263,77 @@ put it center and top with added styling */
   /* center text in the ttable */
   text-align: center;
   color:black;
+}
+
+/* .login-register contains two divs
+one for login (.login-container) and one for register (.register-container)
+put them on top of each other like:
+    login
+    register
+
+*/
+
+.login-register {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.login-register .login-container {
+  grid-row: 1;
+}
+
+.login-register .register-container {
+  grid-row: 1;
+}
+
+/* put login and register buttons below the form */
+.login-register Button {
+  margin: 10px;
+}
+
+/* format it so it looks like:
+    Username [input]
+    Password [input]
+    Login [button]
+
+*/
+
+.login-register .login-container Form.Control {
+  margin: 10px;
+}
+
+.login-register .login-container Button {
+  margin: 10px;
+  /* center button */
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+
+}
+
+/* format it so it looks like:
+    Username [input]
+    Password [input]
+    Register [button]
+
+*/
+
+.login-register .register-container Form.Control {
+  margin: 10px;
+}
+
+.login-register .register-container Button {
+  margin: 10px;
+  /* center button */
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+
 }

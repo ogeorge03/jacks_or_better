@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
+import { Form, Button } from 'react-bootstrap'
 
-function Login({setAccessToken, setRefreshToken, setIsAdmin, setUser}) {
+function Login({setAccessToken, setRefreshToken, setIsAdmin, setUser, setNewAccount}) {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
   
@@ -25,12 +26,25 @@ function Login({setAccessToken, setRefreshToken, setIsAdmin, setUser}) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder='Username' onChange={e => setUsername(e.target.value)} />
-        <input type="password" placeholder='Password' onChange={e => setPassword(e.target.value)} />
-        <button type="submit">Login</button>
-      </form>
+    <div className="login-container">
+      <Form onSubmit={handleSubmit}>
+         <Form.Group controlId="formBasicEmail">
+          <Form.Label>Username</Form.Label>
+          <Form.Control type="text" placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+      </Form>
       <div id="errorLogin"></div>
+      <div className="register-link">
+        <p>Don't have an account? <a href="#" onClick={() => setNewAccount(true)}>Click here to register</a></p>
+        </div>
+      </div>
     </>
   )
 }

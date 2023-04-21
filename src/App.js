@@ -26,6 +26,7 @@ function App() {
   const [restart, setRestart] = useState(false);
   const [username, setUsername] = useState('');
   const [restarts, setRestarts] = useState(0);
+  const [newAccount, setNewAccount] = useState(false);
 
   const [accessToken, setAccessToken] = useState(localStorage.getItem('auth-token-access'));
   const [refreshToken, setRefreshToken] = useState(localStorage.getItem('auth-token-refresh'));
@@ -160,15 +161,21 @@ const handleRestart = async () => {
   // Return all the card images (png)
   return (
     <>
+    <Alert id="game-title">Jacks Or Better</Alert>
+    <Payouts />
     {accessToken === null ? (
       <>
-        <Login setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} setIsAdmin={setIsAdmin} setUser={setUsername} />
-        <Register setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} />
-
+      <div className="login-register">
+        {newAccount === false ? (
+          <>
+        <Login setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} setIsAdmin={setIsAdmin} setUser={setUsername} setNewAccount={setNewAccount} />
+        </>
+        ) : (
+        <Register setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} setNewAccount={setNewAccount} />
+        )}
+      </div>
       </>) : (
     <>
-      <Alert id="game-title">Jacks Or Better</Alert>
-      <Payouts />
     {restart === false ? (
       <>
       <h2 id="money-title">Money: ${money}</h2>
