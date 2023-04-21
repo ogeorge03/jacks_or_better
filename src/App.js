@@ -156,6 +156,32 @@ const handleRestart = async () => {
   }
 }
 
+const handleLogout = async () => {
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/logout`, {
+      username: username
+    }, {
+      headers: {
+        'auth-token-access': accessToken,
+        'auth-token-refresh': refreshToken
+      }
+    });
+    setAccessToken(null);
+    setRefreshToken(null);
+    setIsAdmin(false);
+    setUsername('');
+    setMoney(100);
+    setBet(0);
+    setNewDeck(true);
+    setRestart(false);
+    setRestarts(0);
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+
+
 
 
   // Return all the card images (png)
@@ -176,6 +202,7 @@ const handleRestart = async () => {
       </div>
       </>) : (
     <>
+    <Button variant="primary" id="logout-btn" onClick={handleLogout}>Logout</Button>
     {restart === false ? (
       <>
       <h2 id="money-title">Money: ${money}</h2>

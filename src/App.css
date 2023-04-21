@@ -338,3 +338,20 @@ put them on top of each other like:
 
 }
 
+#logout-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+@media screen and (max-width: 480px) {
+  /* make logout smaller so it doesnt overlap */
+  #logout-btn {
+    font-size: .7em;
+  }
+
+
+
+}
+

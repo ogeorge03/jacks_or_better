@@ -83,7 +83,7 @@ app.post('/login', asyncWrapper(async (req, res) => {
 
 app.get('/logout', asyncWrapper(async (req, res) => {
 
-  const user = await userModel.findOne({ token: req.query.appid })
+  const user = await userModel.findOne({ username: req.body.username})
   if (!user) {
     throw new UserAuthError("User not found")
   }
