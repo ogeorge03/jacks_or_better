@@ -19,7 +19,7 @@ function App() {
   const [hand, setHand] = useState([]);
   const [handMulligan, setHandMulligan] = useState([false, false, false, false, false]);
   const [numMulligan, setNumMulligan] = useState(0);
-  const [money, setMoney] = useState(100);
+  const [money, setMoney] = useState(-1);
   const [bet, setBet] = useState(0);
   const [checkHand, setCheckHand] = useState(false);
   const [newDeck, setNewDeck] = useState(false);
@@ -112,6 +112,7 @@ function App() {
   // Whenever money changes, update the database
   useEffect(() => {
     async function updateMoney() {
+      if (money === -1) return;
       if (accessToken === null) return;
       try {
         const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/updateMoney`, {
@@ -147,10 +148,13 @@ const handleRestart = async () => {
     setMoney(100);
     setAccessToken(res.headers['auth-token-access']);
     setRefreshToken(res.headers['auth-token-refresh']);
+    setHandMulligan([false, false, false, false, false]);
+    setNumMulligan(0);
     setRestart(false);
     setRestarts(restarts + 1);
     setNewDeck(true);
     setBet(0);
+    setCheckHand(false);
   } catch (error) {
       console.log(error);
   }
@@ -168,12 +172,15 @@ const handleLogout = async () => {
     });
     setAccessToken(null);
     setRefreshToken(null);
+    setHandMulligan([false, false, false, false, false]);
+    setNumMulligan(0);
     setIsAdmin(false);
     setUsername('');
     setBet(0);
     setNewDeck(true);
     setRestart(false);
     setRestarts(0);
+    setCheckHand(false);
   } catch (error) {
       console.log(error);
   }
@@ -202,7 +209,7 @@ const handleLogout = async () => {
       </>) : (
     <>
     <Button variant="primary" id="logout-btn" onClick={handleLogout}>Logout</Button>
-    {restart === false ? (
+    {(restart === false) && (money + bet !== 0) ? (
       <>
       <h2 id="money-title">Money: ${money}</h2>
       {bet === 0 && <h2 id="restarts-title">Restarts: {restarts}</h2>}
@@ -258,6 +265,7 @@ const handleLogout = async () => {
 }</>) : (
   <div className="container game-over">
     <h1>Game Over</h1>
+    <h1>No more money</h1>
     <Button onClick={() => handleRestart()}>Restart?</Button>
     </div>
 )
