@@ -15,7 +15,12 @@ const {
 
 const app = express()
 
-app.use(cors())
+app.use(cors(
+  {
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  }
+))
 
 const start = asyncWrapper(async () => {
   await connectDB({ "drop": false });
@@ -89,6 +94,60 @@ app.get('/logout', asyncWrapper(async (req, res) => {
   }
   await userModel.updateOne({ token: user.token }, { token_invalid: true })
   res.send("Logged out")
+}))
+
+app.post("/updateMoney", asyncWrapper(async (req, res) => {
+  // update this user's money
+  const {username, money} = req.body
+
+  const user = await userModel.findOne({username})
+  if (!user) {
+    throw new UserNotFoundError("User not found")
+  }
+  await userModel.updateOne({username}, {money})
+  res.json({
+    msg: "Money updated"
+  })
+}))
+
+app.post("/getMoney", asyncWrapper(async (req, res) => {
+  // get this user's money
+  const {username} = req.body
+  const user = await userModel.findOne({username})
+  if (!user) {
+    throw new UserNotFoundError("User not found")
+  }
+  res.json({
+    money: user.money
+  })
+}))
+
+app.post("/restart", asyncWrapper(async (req, res) => {
+  // set users money back to 100
+  // increment users restarts by 1
+  const {username} = req.body
+  const user = await userModel.findOne({username})
+  if (!user) {
+    throw new UserNotFoundError("User not found")
+  }
+
+  await userModel.updateOne({username}, {money: 100, restarts: user.restarts + 1})
+  res.json({
+    msg: "Money reset"
+  })
+}))
+
+app.post("/getRestarts", asyncWrapper(async (req, res) => {
+  // get this user's restarts
+  const {username} = req.body
+  const user = await userModel.findOne({username})
+  if (!user) {
+    throw new UserNotFoundError("User not found")
+  }
+
+  res.json({
+    restarts: user.restarts
+  })
 }))
 
 

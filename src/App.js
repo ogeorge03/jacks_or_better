@@ -37,7 +37,7 @@ function App() {
     async function getMoney() {
       if (accessToken === null) return;
       try {
-        const res = await axios.post(`${process.env.REACT_APP_APP_SERVER}/getMoney`, {
+        const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/getMoney`, {
           username: username
         }, {
           headers: {
@@ -59,7 +59,7 @@ function App() {
     async function getRestarts() {
       if (accessToken === null) return;
       try {
-        const res = await axios.post(`${process.env.REACT_APP_APP_SERVER}/getRestarts`, {
+        const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/getRestarts`, {
           username: username
         }, {
           headers: {
@@ -114,7 +114,7 @@ function App() {
     async function updateMoney() {
       if (accessToken === null) return;
       try {
-        const res = await axios.post(`${process.env.REACT_APP_APP_SERVER}/updateMoney`, {
+        const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/updateMoney`, {
           money: money,
           username: username
         }, {
@@ -136,7 +136,7 @@ function App() {
 
 const handleRestart = async () => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_APP_SERVER}/restart`, {
+    const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/restart`, {
       username: username
     }, {
       headers: {
