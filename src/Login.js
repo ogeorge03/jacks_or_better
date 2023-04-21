@@ -43,7 +43,7 @@ function Login({setAccessToken, setRefreshToken, setIsAdmin, setUser, setNewAcco
       </Form>
       <div id="errorLogin"></div>
       <div className="register-link">
-        <p>Don't have an account? <a href="#" onClick={() => setNewAccount(true)}>Click here to register</a></p>
+        <p>Don't have an account? <a href="/#" onClick={() => setNewAccount(true)}>Click here to register</a></p>
         </div>
       </div>
     </>

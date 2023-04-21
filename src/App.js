@@ -30,7 +30,7 @@ function App() {
 
   const [accessToken, setAccessToken] = useState(localStorage.getItem('auth-token-access'));
   const [refreshToken, setRefreshToken] = useState(localStorage.getItem('auth-token-refresh'));
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [, setIsAdmin] = useState(false);
 
   // Set money to users money in the database on first load
   useEffect(() => {
@@ -158,7 +158,7 @@ const handleRestart = async () => {
 
 const handleLogout = async () => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/logout`, {
+    await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/logout`, {
       username: username
     }, {
       headers: {

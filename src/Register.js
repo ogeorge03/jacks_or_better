@@ -42,7 +42,7 @@ function Register({setAccessToken, setRefreshToken, setNewAccount, setUser}) {
       </Form>
       <div id="errorRegister"></div>
       <div className="register-link">
-        <p>Already have an account? <a href="#" onClick={() => setNewAccount(false)}>Click here to login</a></p>
+        <p>Already have an account? <a href="/#" onClick={() => setNewAccount(false)}>Click here to login</a></p>
         </div>
       </div>
     </>
