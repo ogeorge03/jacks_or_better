@@ -37,7 +37,7 @@ function App() {
     async function getMoney() {
       if (accessToken === null) return;
       try {
-        const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER | "http://localhost:5000"}/getMoney`, {
+        const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER }/getMoney`, {
           username: username
         }, {
           headers: {
@@ -59,7 +59,7 @@ function App() {
     async function getRestarts() {
       if (accessToken === null) return;
       try {
-        const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER | "http://localhost:5000"}/getRestarts`, {
+        const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/getRestarts`, {
           username: username
         }, {
           headers: {
@@ -114,7 +114,7 @@ function App() {
     async function updateMoney() {
       if (accessToken === null) return;
       try {
-        const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER | "http://localhost:5000"}/updateMoney`, {
+        const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/updateMoney`, {
           money: money,
           username: username
         }, {
@@ -136,7 +136,7 @@ function App() {
 
 const handleRestart = async () => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER | "http://localhost:5000"}/restart`, {
+    const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/restart`, {
       username: username
     }, {
       headers: {
@@ -158,7 +158,7 @@ const handleRestart = async () => {
 
 const handleLogout = async () => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER | "http://localhost:5000"}/logout`, {
+    const res = await axios.post(`${process.env.REACT_APP_AUTH_SERVER}/logout`, {
       username: username
     }, {
       headers: {
