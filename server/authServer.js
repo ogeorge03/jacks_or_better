@@ -86,7 +86,7 @@ app.post('/login', asyncWrapper(async (req, res) => {
 }))
 
 
-app.get('/logout', asyncWrapper(async (req, res) => {
+app.post('/logout', asyncWrapper(async (req, res) => {
 
   const user = await userModel.findOne({ username: req.body.username})
   if (!user) {
