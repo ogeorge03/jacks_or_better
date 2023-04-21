@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Alert } from 'react-bootstrap'
 
 function Login({setAccessToken, setRefreshToken, setIsAdmin, setUser, setNewAccount}) {
   const [username, setUsername] = React.useState('')
@@ -21,7 +21,7 @@ function Login({setAccessToken, setRefreshToken, setIsAdmin, setUser, setNewAcco
       setIsAdmin(res.data.role === "admin")
       document.getElementById("errorLogin").innerHTML = ""
     } catch (error) {
-      document.getElementById("errorLogin").innerHTML = error
+      document.getElementById("errorLogin").innerHTML = "Incorrect Username or Password"
     }
   }
 
@@ -41,7 +41,7 @@ function Login({setAccessToken, setRefreshToken, setIsAdmin, setUser, setNewAcco
           Login
         </Button>
       </Form>
-      <div id="errorLogin"></div>
+      <Alert variant="danger" id="errorLogin"></Alert>
       <div className="register-link">
         <p>Don't have an account? <a href="/#" onClick={() => setNewAccount(true)}>Click here to register</a></p>
         </div>

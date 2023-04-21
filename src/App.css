@@ -277,7 +277,7 @@ put them on top of each other like:
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -42%);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
@@ -350,8 +350,21 @@ put them on top of each other like:
   #logout-btn {
     font-size: .7em;
   }
-
-
-
 }
 
+
+#errorRegister{
+  text-align: center;
+}
+
+#errorRegister:empty{
+  display: none;
+}
+
+#errorLogin{
+  text-align: center;
+}
+
+#errorLogin:empty{
+  display: none;
+}

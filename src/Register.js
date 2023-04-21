@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Alert } from 'react-bootstrap'
 
 
 function Register({setAccessToken, setRefreshToken, setNewAccount, setUser}) {
@@ -20,7 +20,7 @@ function Register({setAccessToken, setRefreshToken, setNewAccount, setUser}) {
       setRefreshToken(res.headers['auth-token-refresh'])
       document.getElementById("errorRegister").innerHTML = ""
     } catch (error) {
-      document.getElementById("errorRegister").innerHTML = error
+      document.getElementById("errorRegister").innerHTML = "Username already exists"
     }
   }
 
@@ -40,7 +40,7 @@ function Register({setAccessToken, setRefreshToken, setNewAccount, setUser}) {
           Register
         </Button>
       </Form>
-      <div id="errorRegister"></div>
+      <Alert variant="danger" id="errorRegister"></Alert>
       <div className="register-link">
         <p>Already have an account? <a href="/#" onClick={() => setNewAccount(false)}>Click here to login</a></p>
         </div>
