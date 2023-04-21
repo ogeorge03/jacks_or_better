@@ -135,7 +135,12 @@ function App() {
     updateMoney();
   }, [money, accessToken, refreshToken, setAccessToken, setRefreshToken, username]);
 
-
+  useEffect(() => {
+    // if money > high score, update high score
+    if (money > highScore) {
+      setHighScore(money);
+    }
+  }, [money, highScore, setHighScore]);
 
 const handleRestart = async () => {
   try {
@@ -216,7 +221,7 @@ const handleLogout = async () => {
       <h2 id="money-title">Money: ${money} <br/> High Score: ${highScore}</h2>
       {bet === 0 && <h2 id="restarts-title">Restarts: {restarts}</h2>}
       {bet !== 0 && <h2 id="bet-title">Bet: ${bet}</h2>}
-      <br /> <br />
+      <br /> <br /> <br /> <br />
       {/* if bet = 0 show bet container else show cards */}
       {bet === 0 ? (
         <div className="container">
