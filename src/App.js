@@ -252,7 +252,7 @@ const handleLogout = async () => {
               setBet(Number(document.querySelector("input").value));
               setMoney((prev) => prev - Number(document.querySelector("input").value));
             }}>Bet</Button>
-          <div id="betError"> </div>
+          <Alert variant="danger" id="betError"></Alert>
           </div>
         </div>
       ) : (

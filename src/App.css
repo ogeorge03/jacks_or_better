@@ -368,3 +368,11 @@ put them on top of each other like:
 #errorLogin:empty{
   display: none;
 }
+
+#betError {
+  text-align: center;
+}
+
+#betError:empty {
+  display: none;
+}
