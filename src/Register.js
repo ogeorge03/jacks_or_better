@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Button, Form } from 'react-bootstrap'
 
 
-function Register({setAccessToken, setRefreshToken, setNewAccount}) {
+function Register({setAccessToken, setRefreshToken, setNewAccount, setUser}) {
 
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -15,11 +15,12 @@ function Register({setAccessToken, setRefreshToken, setNewAccount}) {
         username: username,
         password: password
       })
+      setUser(username)
       setAccessToken(res.headers['auth-token-access'])
       setRefreshToken(res.headers['auth-token-refresh'])
       document.getElementById("errorRegister").innerHTML = ""
     } catch (error) {
-      document.getElementById("errorRegister").innerHTML = error.response.data
+      document.getElementById("errorRegister").innerHTML = error
     }
   }
 

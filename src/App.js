@@ -171,7 +171,7 @@ const handleRestart = async () => {
         <Login setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} setIsAdmin={setIsAdmin} setUser={setUsername} setNewAccount={setNewAccount} />
         </>
         ) : (
-        <Register setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} setNewAccount={setNewAccount} />
+        <Register setAccessToken={setAccessToken} setRefreshToken={setRefreshToken} setNewAccount={setNewAccount} setUser={setUsername} />
         )}
       </div>
       </>) : (

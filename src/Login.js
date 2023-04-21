@@ -20,7 +20,7 @@ function Login({setAccessToken, setRefreshToken, setIsAdmin, setUser, setNewAcco
       setIsAdmin(res.data.role === "admin")
       document.getElementById("errorLogin").innerHTML = ""
     } catch (error) {
-      document.getElementById("errorLogin").innerHTML = error.response.data
+      document.getElementById("errorLogin").innerHTML = error
     }
   }
 
