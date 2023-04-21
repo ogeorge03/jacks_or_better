@@ -170,7 +170,6 @@ const handleLogout = async () => {
     setRefreshToken(null);
     setIsAdmin(false);
     setUsername('');
-    setMoney(100);
     setBet(0);
     setNewDeck(true);
     setRestart(false);
