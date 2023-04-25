@@ -19,13 +19,13 @@ const schema = new mongoose.Schema({
     max: 1000
   },
   money: {
-    type: Number,
+    type: Decimal128,
     required: true,
     default: 100,
     min: 0,
   },
   high_score: {
-    type: Number,
+    type: Decimal128,
     required: true,
     default: 100
   },

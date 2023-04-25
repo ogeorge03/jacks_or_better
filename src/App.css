@@ -160,7 +160,7 @@ put it center and top with added styling */
   font-weight: bold;
 }
 
-@media screen and (max-width: 574px) {
+@media screen and (max-width: 800px) {
   /* make money-title smaller so it doesnt overlap */
   #money-title {
     margin-top: 40px;

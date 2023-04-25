@@ -224,7 +224,7 @@ const handleLogout = async () => {
       <h2 id="money-title">Money: ${formatMoney(money)} <br/> High Score: ${formatMoney(highScore)}</h2>
       {bet === 0 && <h2 id="restarts-title">Restarts: {restarts}</h2>}
       {bet !== 0 && <h2 id="bet-title">Bet: ${formatMoney(bet)}</h2>}
-      <br /> <br /> <br /> <br />
+      <br /> <br /> <br /> <br /> <br /> <br /> <br /> 
       {/* if bet = 0 show bet container else show cards */}
       {bet === 0 ? (
         <div className="container">

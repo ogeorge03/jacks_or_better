@@ -14,6 +14,7 @@ function Login({setAccessToken, setRefreshToken, setIsAdmin, setUser, setNewAcco
         username: username,
         password: password
       })
+      console.log(res)
       setUser(username)
       // setAccessToken(res.headers['auth-token-access'])
       setAccessToken(res.headers['auth-token'])
