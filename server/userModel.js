@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 require('mongoose-long')(mongoose);
 const { Types: { Long } } = mongoose;
 
+const Decimal128 = mongoose.Schema.Types.Decimal128
+
 const schema = new mongoose.Schema({
   username: {
     type: String,
