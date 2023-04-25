@@ -11,7 +11,7 @@ function Leaderboard() {
         async function getLeaderboard() {
             try {
                 const res = await axios.get(`${process.env.REACT_APP_AUTH_SERVER}/getLeaderboard`);
-                setLeaderboard(res.data.users);
+                setLeaderboard(res.data.leaderboard);
             } catch (error) {
                 console.log(error);
             }
@@ -34,8 +34,8 @@ function Leaderboard() {
         </button>
 
         <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-                <h1>Leaderboard</h1>
+            <Modal.Header id="modal-header" closeButton>
+                <h1 id="leaderboard-title">Leaderboard</h1>
             </Modal.Header>
             <Modal.Body>
                 <table className="table table-striped">
