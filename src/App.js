@@ -48,8 +48,8 @@ function App() {
             'auth-token-refresh': refreshToken
           }
         });
-        setMoney(res.data.money);
-        setHighScore(res.data.high_score);
+        setMoney(res.data.money.$numberDecimal);
+        setHighScore(res.data.high_score.$numberDecimal);
         setAccessToken(res.headers['auth-token-access']);
         setRefreshToken(res.headers['auth-token-refresh']);
       } catch (error) {

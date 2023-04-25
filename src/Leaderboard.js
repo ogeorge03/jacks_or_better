@@ -12,6 +12,7 @@ function Leaderboard() {
             try {
                 const res = await axios.get(`${process.env.REACT_APP_AUTH_SERVER}/getLeaderboard`);
                 setLeaderboard(res.data.leaderboard);
+                console.log(res.data.leaderboard);
             } catch (error) {
                 console.log(error);
             }
@@ -51,7 +52,7 @@ function Leaderboard() {
                             <tr key={index}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{user.username}</td>
-                                <td>${formatMoney(user.high_score)}</td>
+                                <td>${formatMoney(user.high_score.$numberDecimal)}</td>
                             </tr>
                         ))}
                     </tbody>

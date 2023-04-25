@@ -106,7 +106,7 @@ app.post("/updateMoney", asyncWrapper(async (req, res) => {
   }
 
   // if current money is greater than high score then update high score
-  if (money > user.high_score) {
+  if (money > user.high_score.$numberDecimal) {
      await userModel.updateOne({username}, {high_score: money})
   }
 
