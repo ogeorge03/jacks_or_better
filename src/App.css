@@ -119,6 +119,18 @@ a {
   text-align: left;
 }
 
+#modal-header{
+  text-align: center;
+  color:black;
+  justify-content: center;
+  align-items: center;
+} 
+
+#leaderboard-title {
+  text-align: center;
+  color:black;
+}
+
 /* This element has an h1 with "Jacks Or Better"
 put it center and top with added styling */
 #game-title {
@@ -137,6 +149,16 @@ put it center and top with added styling */
   font-size: 1.5em;
   font-weight: bold;
 }
+
+@media screen and (max-width: 574px) {
+  /* make money-title smaller so it doesnt overlap */
+  #money-title {
+    margin-top: 40px;
+    left: 0;
+  }
+}
+
+
 
 #bet-title {
   position: absolute;

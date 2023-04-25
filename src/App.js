@@ -8,6 +8,8 @@ import {Alert, Button, Form} from 'react-bootstrap';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import './App.css';
+import Leaderboard from './Leaderboard';
+import formatMoney from './formatMoney';
 
 
 
@@ -202,6 +204,7 @@ const handleLogout = async () => {
     <>
     <Alert id="game-title">Jacks Or Better</Alert>
     <Payouts />
+    <Leaderboard />
     {accessToken === null ? (
       <>
       <div className="login-register">
@@ -218,9 +221,9 @@ const handleLogout = async () => {
     <Button variant="primary" id="logout-btn" onClick={handleLogout}>Logout</Button>
     {(restart === false) && (money + bet !== 0) ? (
       <>
-      <h2 id="money-title">Money: ${money} <br/> High Score: ${highScore}</h2>
+      <h2 id="money-title">Money: ${formatMoney(money)} <br/> High Score: ${formatMoney(highScore)}</h2>
       {bet === 0 && <h2 id="restarts-title">Restarts: {restarts}</h2>}
-      {bet !== 0 && <h2 id="bet-title">Bet: ${bet}</h2>}
+      {bet !== 0 && <h2 id="bet-title">Bet: ${formatMoney(bet)}</h2>}
       <br /> <br /> <br /> <br />
       {/* if bet = 0 show bet container else show cards */}
       {bet === 0 ? (
