@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+require('mongoose-long')(mongoose);
+const { Types: { Long } } = mongoose;
 
 const schema = new mongoose.Schema({
   username: {
@@ -17,13 +19,13 @@ const schema = new mongoose.Schema({
     max: 1000
   },
   money: {
-    type: Number,
+    type: Long,
     required: true,
     default: 100,
     min: 0,
   },
   high_score: {
-    type: Number,
+    type: Long,
     required: true,
     default: 100
   },
