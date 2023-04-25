@@ -136,6 +136,11 @@ a {
   color:black;
 }
 
+#payouts-hint {
+  text-align: center;
+  color:black;
+}
+
 /* This element has an h1 with "Jacks Or Better"
 put it center and top with added styling */
 #game-title {
