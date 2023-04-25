@@ -1,7 +1,7 @@
 import React from 'react'
-import Modal from 'react-modal';
 import {Table, Button} from 'react-bootstrap';
 import { useState } from 'react';
+import {Modal} from 'react-bootstrap'
 
 // Button that brings up a modal showing the payouts for each hand
 // Modal should have a close button
@@ -12,31 +12,18 @@ function Payouts() {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  Modal.setAppElement('#root')
-  Modal.defaultStyles.overlay.backgroundColor = 'rgba(0, 0, 0, 0.5)'
-  Modal.defaultStyles.content.width = '66%'
-  Modal.defaultStyles.content.height = '500px'
-  Modal.defaultStyles.content.margin = 'auto'
-  Modal.defaultStyles.content.padding = '0'
 
   return (
     <>
-      <div className="container payoutsBtn">
-        <Button id='payout-btn' onClick={() => {
-          setModalIsOpen(true);
-        }}>Payouts</Button>
-      </div>
-      <Modal id="payoutsModal" isOpen={modalIsOpen} onRequestClose={() => {
-        setModalIsOpen(false);
-      }}>
-        <div className="container">
-          <Button variant='danger' id="modalClose" onClick={() => {
-            setModalIsOpen(false);
-          }}>X</Button>
-          <h1 id="payouts-h1">Payouts</h1>
-
-          <br />
-          <Table striped bordered hover variant="light" responsive="sm">
+      <Button variant="primary" onClick={() => setModalIsOpen(true)}>
+        Payouts
+      </Button>
+      <Modal show={modalIsOpen} onHide={() => setModalIsOpen(false)}>
+        <Modal.Header closeButton>
+          <h1 id="payouts-title">Payouts</h1>
+        </Modal.Header>
+        <Modal.Body>
+          <Table striped bordered hover>
             <thead>
               <tr>
                 <th>Hand</th>
@@ -82,7 +69,7 @@ function Payouts() {
               </tr>
             </tbody>
           </Table>
-          </div>
+        </Modal.Body>
       </Modal>
     </>
   )
