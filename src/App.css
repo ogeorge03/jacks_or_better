@@ -156,14 +156,14 @@ put it center and top with added styling */
   position: absolute;
   right: 0;
   margin: 10px;
-  font-size: 1.5em;
+  font-size: 1.25em;
   font-weight: bold;
 }
 
 @media screen and (max-width: 800px) {
   /* make money-title smaller so it doesnt overlap */
   #money-title {
-    margin-top: 40px;
+    margin-top: 35px;
     left: 0;
   }
 }
@@ -174,7 +174,7 @@ put it center and top with added styling */
   position: absolute;
   left: 0;
   margin: 10px;
-  font-size: 1.5em;
+  font-size: 1.25em;
   font-weight: bold;
 }
 
@@ -182,7 +182,7 @@ put it center and top with added styling */
   position: absolute;
   left: 0;
   margin: 10px;
-  font-size: 1.5em;
+  font-size: 1.25em;
   font-weight: bold;
 }
 
@@ -271,6 +271,15 @@ put it center and top with added styling */
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+@media screen and (max-width: 430px) {
+  /* move container down more */
+  .hand-mulligan {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    top: 65%;
+  }
 }
 
 /* put the hand of cards in the middle of the screen */
