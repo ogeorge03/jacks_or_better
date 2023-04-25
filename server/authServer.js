@@ -157,6 +157,13 @@ app.post("/getRestarts", asyncWrapper(async (req, res) => {
   })
 }))
 
+app.get("/getLeaderboard", asyncWrapper(async (req, res) => {
+  // get leaderboard
+  const users = await userModel.find({}).sort({high_score: -1}).limit(10)
+  res.json({
+    users
+  })
+}))
 
 
 
