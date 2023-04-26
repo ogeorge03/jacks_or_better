@@ -20,6 +20,25 @@ function Leaderboard() {
         getLeaderboard();
     }, []);
 
+    // every 1 second, update leaderboard
+    useEffect(() => {
+        const interval = setInterval(() => {
+            async function getLeaderboard() {
+                try {
+                    const res = await axios.get(`${process.env.REACT_APP_AUTH_SERVER}/getLeaderboard`);
+                    setLeaderboard(res.data.leaderboard);
+                    console.log(res.data.leaderboard);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            getLeaderboard();
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
+
+
+
 
     const [show, setShow] = useState(false);
 
