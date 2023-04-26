@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { Alert, Button } from 'react-bootstrap';
+import formatMoney from './formatMoney';
 
 function checkWinnings(cards) {
   let cardValues = [];
@@ -154,7 +155,7 @@ function Winnings({cards, bet, setBet, money, setMoney, setCheckHand, setNewDeck
       </div>
       <br /> <br />
       <Alert variant={winningsMessage !== "No Winning Hand. Better luck next time!" ? "success" : "warning"}>{winningsMessage}</Alert>
-      <Alert variant={winnings === 0 ? "warning" : "success"}>You bet ${bet} {winnings === 0 ? `and lost all of it.` : `and won a total of $${winnings + bet}! (Original bet + Payout)`}</Alert>
+      <Alert variant={winnings === 0 ? "warning" : "success"}>You bet ${formatMoney(bet)} {winnings === 0 ? `and lost all of it.` : `and won a total of $${formatMoney(winnings + bet)}! (Original bet + Payout)`}</Alert>
       <div id="play-quit-ctn">
       {money !== 0  &&
       <Button id="play-again-btn" onClick={
