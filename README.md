@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Jacks or Better
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Jacks or Better is an exciting web application that brings you the classic video poker game experience. Test your luck and skill as you aim for a pair of jacks or better to win big! 
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Realistic video poker gameplay
+- User-friendly interface
+- Leaderboard to showcase the top 10 players
+- Hosted on reliable platforms
+- Secure MongoDB Atlas database
 
-### `npm start`
+## Tools Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Frontend: [React](https://reactjs.org/)
+- Backend: [Express](https://expressjs.com/)
+- Database: [MongoDB](https://www.mongodb.com/) (NoSQL)
+- Deck of Cards API: [deckofcardsapi.com](https://deckofcardsapi.com/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Hosted Platforms
 
-### `npm test`
+- Frontend: [Netlify](https://www.netlify.com/)
+- Backend: [Render](https://render.com/)
+- Database: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Website
 
-### `npm run build`
+Visit the [Jacks or Better website](https://jacks-or-better.netlify.app/) to play now!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to Play
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The game is played like a normal video poker game. The player is dealt 5 cards and can choose to hold any of the cards. The player then draws new cards to replace the cards that were not held. The player wins if they have a pair of jacks or better. The player starts with \$100 and can bet any amount of money. If a player runs out of money, the reset button can be pressed to reset the game (increasing the player's restart count and setting their money back to $100).
