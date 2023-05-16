@@ -69,6 +69,11 @@ function checkWinnings(cards) {
     return 4;
   }
 
+  // check for a A, 2, 3, 4, 5 straight
+  if (sortedValues[0] === 2 && sortedValues[1] === 3 && sortedValues[2] === 4 && sortedValues[3] === 5 && sortedValues[4] === 14) {
+    return 4;
+  }
+
   // check for three of a kind
   if (sortedValues[0] === sortedValues[1] && sortedValues[1] === sortedValues[2]) { // 3 of a kind in first 3 cards
     return 3;
