@@ -12,7 +12,6 @@ function Leaderboard() {
             try {
                 const res = await axios.get(`${process.env.REACT_APP_AUTH_SERVER}/getLeaderboard`);
                 setLeaderboard(res.data.leaderboard);
-                console.log(res.data.leaderboard);
             } catch (error) {
                 console.log(error);
             }
@@ -20,20 +19,19 @@ function Leaderboard() {
         getLeaderboard();
     }, []);
 
-    // every 1 second, update leaderboard
+    // every 10 seconds, update leaderboard
     useEffect(() => {
         const interval = setInterval(() => {
             async function getLeaderboard() {
                 try {
                     const res = await axios.get(`${process.env.REACT_APP_AUTH_SERVER}/getLeaderboard`);
                     setLeaderboard(res.data.leaderboard);
-                    console.log(res.data.leaderboard);
                 } catch (error) {
                     console.log(error);
                 }
             }
             getLeaderboard();
-        }, 1000);
+        }, 10000);
         return () => clearInterval(interval);
     }, []);
 
@@ -44,6 +42,8 @@ function Leaderboard() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const [showUserDetails, setShowUserDetails] = useState(0);
 
     
 
@@ -57,6 +57,7 @@ function Leaderboard() {
             <Modal.Header id="modal-header" closeButton>
                 <h1 id="leaderboard-title">Leaderboard</h1>
             </Modal.Header>
+            <p id="leaderboard-hint">Click on a user to see more details.</p>
             <Modal.Body>
                 <table className="table table-striped">
                     <thead>
@@ -68,11 +69,41 @@ function Leaderboard() {
                     </thead>
                     <tbody>
                         {leaderboard.map((user, index) => (
-                            <tr key={index}>
+                            <>
+                            <tr key={index} onClick={() => setShowUserDetails(index + 1)}>
                                 <th scope="row">{index + 1}</th>
                                 <td>{user.username}</td>
                                 <td>${formatMoney(user.high_score.$numberDecimal)}</td>
                             </tr>
+
+                            <Modal show={showUserDetails === index + 1} onHide={() => setShowUserDetails(0)}>
+                                <Modal.Header closeButton>
+                                    <h1 id="leaderboard-title">{user.username}</h1>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <table className="table table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Rank</th>
+                                                <td>{index + 1}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">High Score</th>
+                                                <td>${formatMoney(user.high_score.$numberDecimal)}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Money</th>
+                                                <td>${formatMoney(user.money.$numberDecimal)}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Restarts</th>
+                                                <td>{user.restarts}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </Modal.Body>
+                            </Modal>
+                            </>
                         ))}
                     </tbody>
                 </table>
