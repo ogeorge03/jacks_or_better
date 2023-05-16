@@ -198,8 +198,11 @@ const handleLogout = async () => {
 const handleInput = () => {
   // Add commas to make it more readable
   // ex: 1000 -> 1,000 and 1000000 -> 1,000,000
+  // also put $ in front
   const input = document.getElementById("betInput");
   input.value = input.value.replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  input.value = input.value.replace(/\$/g, "");
+  input.value = "$" + input.value;
 }
 
 
@@ -244,7 +247,8 @@ const handleInput = () => {
             <Button variant="primary" size="lg" onClick={() => {
 
               // remove commas from input
-              const value = document.querySelector("input").value.replace(/,/g, "");
+              const value = document.querySelector("input").value.replace(/,/g, "").replace(/\$/g, "");
+              
 
               if (value === "") {
                 document.querySelector("#betError").innerHTML = "Please enter a bet";
