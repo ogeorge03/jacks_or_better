@@ -195,6 +195,14 @@ const handleLogout = async () => {
   }
 }
 
+const handleInput = () => {
+  // Add commas to make it more readable
+  // ex: 1000 -> 1,000 and 1000000 -> 1,000,000
+  const input = document.getElementById("betInput");
+  input.value = input.value.replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
 
 
 
@@ -231,29 +239,39 @@ const handleLogout = async () => {
           <div className="betContainer">
             <h2>Place a bet</h2>
             {/* number field */}
-            <Form.Control type="number" min="1" max={money} step="1" pattern="\d*"></Form.Control>
+            <Form.Control id='betInput' type="text" min="1" max={money} step="1" pattern="\d*" onInput={handleInput}></Form.Control>
             {/* bet button */}
             <Button variant="primary" size="lg" onClick={() => {
 
-              if (document.querySelector("input").value === "") {
+              // remove commas from input
+              const value = document.querySelector("input").value.replace(/,/g, "");
+
+              if (value === "") {
                 document.querySelector("#betError").innerHTML = "Please enter a bet";
                 return;
               }
-              if (Number(document.querySelector("input").value) > money) {
-                document.querySelector("#betError").innerHTML = "You don't have enough money";
-                return;
-              }
-              if (Number(document.querySelector("input").value) < 1) {
+
+              // if not a number
+              if (isNaN(value)) {
                 document.querySelector("#betError").innerHTML = "Please enter a valid bet";
                 return;
               }
-              if (Number(document.querySelector("input").value) % 1 !== 0) {
+
+              if (Number(value) > money) {
+                document.querySelector("#betError").innerHTML = "You don't have enough money";
+                return;
+              }
+              if (Number(value) < 1) {
+                document.querySelector("#betError").innerHTML = "Please enter a valid bet";
+                return;
+              }
+              if (Number(value) % 1 !== 0) {
                 document.querySelector("#betError").innerHTML = "Bet must be a whole number";
                 return;
               }
 
-              setBet(Number(document.querySelector("input").value));
-              setMoney((prev) => prev - Number(document.querySelector("input").value));
+              setBet(Number(value));
+              setMoney((prev) => prev - Number(value));
             }}>Bet</Button>
           <Alert variant="danger" id="betError"></Alert>
           </div>
